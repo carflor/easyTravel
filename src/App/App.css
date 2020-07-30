@@ -10,7 +10,17 @@
 }
 
 .nav {
-  height: 10vh;
+  height: 30vh;
   width: 100vw;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }
