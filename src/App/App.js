@@ -73,6 +73,7 @@ function App() {
  
   return (
     <Switch>
+      {/* dynamic path /countries/:countryCode/holidays */}
       <Route path="/holidays" render={() => <Holidays isSelected={isSelected} />} />
       <Route path="/saved" render={() => <Saved />} />
       <Route path="/" render={() => main} />

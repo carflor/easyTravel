@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Form.css'
 import { Link } from 'react-router-dom'
 
 function Form({ countries, submitCountry }) {
+  const [selectedValue, setSelectedValue] = useState('') 
   const countryOptions = countries.map(country => {
   return (
       <option key={country.key} value={country.value}>{country.value}</option>
     )
   })
   
-  const selectedValue = document.getElementById('countries')
 
   return (
     <form className="country-form">
       <label className="input-title">Destination</label>
-      <select id="countries" name="Countries" className="countries">
+      <select 
+        id="countries" 
+        name="Countries" 
+        className="countries"
+        onChange={(event) => setSelectedValue(event.target.value)}
+      >
         <option value="choose">Select...</option>
           {countryOptions}
       </select>
@@ -23,7 +28,7 @@ function Form({ countries, submitCountry }) {
           type="submit" 
           name="submit-btn" 
           className="submit-btn"
-          onClick={() => submitCountry(selectedValue.value)}
+          onClick={() => submitCountry(selectedValue)}
         >
           GO!
         </button>

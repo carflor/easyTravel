@@ -25,7 +25,7 @@ function Saved() {
         <h2 className="attend-title">Attend</h2>
         <section className="attend-cards-container">
           <section className="attend-card">
-            <p className="country-name-card">Albania</p>
+            <p className="country-name-card">Croatia</p>
             <p className="date-card">2021/03/04</p>
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
@@ -35,22 +35,22 @@ function Saved() {
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
           <section className="attend-card">
-            <p className="country-name-card">Albania</p>
+            <p className="country-name-card">Montenegro</p>
             <p className="date-card">2021/03/04</p>
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
           <section className="attend-card">
-            <p className="country-name-card">Albania</p>
+            <p className="country-name-card">Serbia</p>
             <p className="date-card">2021/03/04</p>
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
           <section className="attend-card">
-            <p className="country-name-card">Albania</p>
+            <p className="country-name-card">Kosovo</p>
             <p className="date-card">2021/03/04</p>
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
           <section className="attend-card">
-            <p className="country-name-card">Albania</p>
+            <p className="country-name-card">Hungary</p>
             <p className="date-card">2021/03/04</p>
             <p className="holiday-name-card">Day of the Rabbit</p>
           </section>
@@ -59,7 +59,16 @@ function Saved() {
       <section className="avoid-container">
         <h2 className="avoid-title">Avoid</h2>
         <section className="avoid-cards-container">
-
+          <section className="avoid-card">
+              <p className="country-name-card">Kosovo</p>
+              <p className="date-card">2021/03/04</p>
+              <p className="holiday-name-card">Day of the Rabbit</p>
+            </section>
+            <section className="avoid-card">
+              <p className="country-name-card">Hungary</p>
+              <p className="date-card">2021/03/04</p>
+              <p className="holiday-name-card">Day of the Rabbit</p>
+            </section>
         </section>
       </section>
       <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>

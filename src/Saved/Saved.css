@@ -38,13 +38,18 @@
   overflow: scroll;
 }
 
-.attend-card {
+.attend-card,
+.avoid-card {
   margin: 2vh;
   padding: 1vh;
   border: 2px solid black;
   background-color: #FBD1A2;
   width: 50vh;
   height: 30vh
+}
+
+.avoid-card {
+  background-color: lightcoral;
 }
 
 .country-name-card {

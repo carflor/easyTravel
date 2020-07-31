@@ -9,8 +9,8 @@ function Holidays({ isSelected }) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  const getHolidays = () => {
-    fetch('https://fe-cors-proxy.herokuapp.com/', {
+  const getHolidays = async () => {
+    await fetch('https://fe-cors-proxy.herokuapp.com/', {
       headers: {
         'Target-URL': `https://date.nager.at/Api/v2/NextPublicHolidays/${isSelected.key}`
       }
