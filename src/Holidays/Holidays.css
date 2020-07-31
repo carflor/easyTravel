@@ -1,0 +1,38 @@
+.holidays-page {
+  width: 100vw;
+  height: 100vh;
+}
+
+.title-box {
+  height: 20vh;
+}
+
+.title-container,
+.country-name-container {
+  height: 10vh;
+  background-color: #FC9F5B;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 7vw;
+  letter-spacing: .3vh;
+}
+
+.country-name-container {
+  background-color: #7DCFB6;
+  /* background-color: #FBD1A2; */
+}
+
+.holidays-container {
+  height: 80vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #7DCFB6;
+}
+
+.loading {
+  padding-top: 3vh;
+  font-size: 5vw;
+}

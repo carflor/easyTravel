@@ -1,0 +1,66 @@
+.saved-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.avoid-title,
+.attend-title,
+.back-button {
+  height: 10vh;
+  background-color: #FC9F5B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7vw;
+  letter-spacing: .5vh;
+}
+
+.back-button {
+  letter-spacing: 1vh;
+}
+
+.avoid-title,
+.attend-title {
+  background-color:#7DCFB6;
+}
+
+.avoid-container,
+.attend-container {
+  height: 45vh;
+}
+
+.attend-cards-container,
+.avoid-cards-container {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.attend-card,
+.avoid-card {
+  margin: 2vh;
+  padding: 1vh;
+  border: 2px solid black;
+  background-color: #FBD1A2;
+  width: 50vh;
+  height: 30vh
+}
+
+.avoid-card {
+  background-color: lightcoral;
+}
+
+.country-name-card {
+  font-size: 5vw;
+}
+
+.date-card {
+  font-size: 4vw;
+}
+
+.holiday-name-card {
+  font-size: 2vw;
+}
+
