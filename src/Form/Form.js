@@ -28,6 +28,7 @@ function Form({ countries, submitCountry }) {
           type="submit" 
           name="submit-btn" 
           className="submit-btn"
+          disabled={selectedValue.length<1 && selectedValue !== 'Select...' }
           onClick={() => submitCountry(selectedValue)}
         >
           GO!

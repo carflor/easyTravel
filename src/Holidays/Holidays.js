@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './Holidays.css'
 import HolidayCard from '../HolidayCard/HolidayCard'
+import { Link } from 'react-router-dom'
+import { fetchHolidays } from '../apiCalls.js'
+// const { uuid } = require('uuidv4');
 
 function Holidays({ isSelected }) {
-  console.log(isSelected, 'isSelected prop in HOLIDAYS COMP')
   const [holidays, setHolidays] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  const getHolidays = async () => {
-    await fetch('https://fe-cors-proxy.herokuapp.com/', {
-      headers: {
-        'Target-URL': `https://date.nager.at/Api/v2/NextPublicHolidays/${isSelected.key}`
-      }
-    })
-      .then((res) => res.json())
+  // const getHolidays = async () => {
+    // await fetch('https://fe-cors-proxy.herokuapp.com/', {
+    //   headers: {
+    //     'Target-URL': `https://date.nager.at/Api/v2/NextPublicHolidays/${isSelected.key}`
+    //   }
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setHolidays(res)
+    //     setIsLoading(false)
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false)
+    //     setError(true)
+    //     console.log(err)
+    //   })
+    // return { holidays, isLoading, error}
+  // }
+  const getHolidays = () => {
+    fetchHolidays(isSelected.key)
       .then((res) => {
         setHolidays(res)
         setIsLoading(false)
@@ -33,10 +47,11 @@ function Holidays({ isSelected }) {
   }, [])
 
   const yearlyHolidays = () => {
+    const id = 1;
     return holidays.map(holiday => {
       console.log(holiday, 'holiday in MAP')
       return (
-       <HolidayCard holiday={holiday} />
+       <HolidayCard key={id++} holiday={holiday} />
       )
     })
   }
