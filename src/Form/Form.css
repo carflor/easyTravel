@@ -1,0 +1,64 @@
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+}
+
+.countries {
+  width: 70vw;
+  height: 9vh;
+  font-size: 5.5vw;
+}
+
+@media screen and (max-width: 760px) {
+  .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .input-title {
+    font-size: 7vw;
+    letter-spacing: 0.5vw;
+    padding-bottom: 1vh;
+  }
+
+  .country-form {
+    height: 34vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .countries,
+  .submit-btn {
+    margin-top: 1vh;
+    letter-spacing: .5vh;
+    width: 70vw;
+    height: 10vh;
+    font-size: 5.8vw;
+    border-radius: 1vh;
+  }
+
+  .countries {
+    padding-left: 1vw; 
+    border: 3px solid;
+  }
+
+  .submit-btn:hover,
+  .submit-btn:focus,
+  .submit-btn:active {
+    box-shadow: 5px saddlebrown;
+  }
+
+  .submit-btn {
+    letter-spacing: .5vh;
+    background-color: #7DCFB6;
+    border: none;
+  }
+}

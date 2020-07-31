@@ -6,21 +6,71 @@
 .app {
   width: 100vw;
   height: 100vh;
-  background-color: lightcoral;
+  background-color: #FC9F5B;
 }
 
 .nav {
   height: 30vh;
   width: 100vw;
-  border: 1px solid black;
+  border-bottom: 3px solid #7DCFB6;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.search-box {
+.country-container {
+  height: 75vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  background-color: #FBD1A2;
+  border-bottom: 9px solid #7DCFB6;
+}
+
+.calendar-icon {
+  width: 10vw;
+}
+
+.page-title {
+  font-size: 7vw;
+  letter-spacing: .7vh;
+}
+
+@media screen and (max-width: 760px) {
+  .nav {
+    height: 25vh;
+    width: 100vw;
+    border-bottom: 9px solid #7DCFB6;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .country-container {
+    height: 75vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBD1A2;
+  }
+
+  .search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+  }
+
+  .page-title {
+    font-size: 10vw;
+    letter-spacing: .7vh;
+  }
+
+  .calendar-icon {
+    width: 15vw;
+  }
 }
