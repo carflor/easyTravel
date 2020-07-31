@@ -4,13 +4,12 @@ import thumbUp from '../Assets/thumb-up.png'
 import thumbDown from '../Assets/thumb-down.png'
 
 function HolidayCard({ holiday }) {
-  console.log(holiday, 'holiday in card component')
   return (
     <section className="holiday-card">
       <section className="data-container">
         <section className="names-container">
           <p className="holiday-name">{holiday.name}</p>
-          <p className="holiday-local-name">Local Name: {holiday.localName}</p>
+          <p className="holiday-local-name">Locally: {holiday.localName}</p>
         </section>
         <section className="date-type-container">
           <p className="holiday-date">{holiday.date}</p>

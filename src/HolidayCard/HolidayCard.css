@@ -1,9 +1,12 @@
 .holiday-card {
   height: 25vh;
   width: 95vw;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
+  margin: 1vh;
+  padding: 1vh;
+  background-color:#FC9F5B;
+  border-radius: 1vh;
 }
 
 .data-container {
@@ -13,8 +16,18 @@
 
 .thumb-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
+
+.holiday-name,
+.holiday-local-name,
+.holiday-date,
+.holiday-type {
+  text-align: center;
+  font-size: 2.5vh;
+}
+
+
 
 
 
