@@ -3,12 +3,19 @@ import './Holidays.css'
 import HolidayCard from '../HolidayCard/HolidayCard'
 import { Link } from 'react-router-dom'
 import { fetchHolidays } from '../apiCalls.js'
-// const { uuid } = require('uuidv4');
 
 function Holidays({ isSelected }) {
   const [holidays, setHolidays] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [selected, setSelected] = useState({
+    avoid: [],
+    attend: []
+  })
+  // const [attendArry, setAttendArr] = useState([])
+  // const [status, setStatus] = useState('') 
+  // do i need an avoid array
+  // do i need an attend array
 
   // const getHolidays = async () => {
     // await fetch('https://fe-cors-proxy.herokuapp.com/', {
@@ -47,11 +54,11 @@ function Holidays({ isSelected }) {
   }, [])
 
   const yearlyHolidays = () => {
-    const id = 1;
+    let id = 1;
     return holidays.map(holiday => {
       console.log(holiday, 'holiday in MAP')
       return (
-       <HolidayCard key={id++} holiday={holiday} />
+       <HolidayCard key={id++} holiday={holiday} setSelected={setSelected} />
       )
     })
   }

@@ -5,6 +5,7 @@ import Holidays from '../Holidays/Holidays'
 import Saved from '../Saved/Saved'
 import Form from '../Form/Form'
 import { Route, Switch, Link } from 'react-router-dom'
+import { fetchCountries } from '../apiCalls'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -19,27 +20,13 @@ function App() {
   }
 
   const getCountries = () => {
-    fetch('https://fe-cors-proxy.herokuapp.com/', {
-      headers: {
-        'Target-URL': 'http://date.nager.at/Api/v2/AvailableCountries'
-      }
-    })
-      .then((res) => res.json())
+    fetchCountries()
       .then((res) => setCountries(res))
       .catch((err) => {
         setIsLoading(false)
         setError(true)
         console.log(err)
       })
-
-    // fetch('http://cors-anywhere.herokuapp.com/http://date.nager.at/Api/v2/AvailableCountries')
-    //   .then((res) => res.json())
-    //   .then((res) => setCountries(res))
-    //   .catch((err) => {
-    //     setIsLoading(false)
-    //     setIsError(true)
-    //     console.log(err)
-    //   })
     return { countries, isLoading, error }
   }
 
@@ -58,7 +45,6 @@ function App() {
             alt="calendar icon"
             src={ calendar }
             className="calendar-icon"
-            // onClick={} 
           /> 
         </Link>
         <section className="search-box">

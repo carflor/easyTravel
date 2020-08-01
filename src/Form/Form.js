@@ -18,9 +18,10 @@ function Form({ countries, submitCountry }) {
         id="countries" 
         name="Countries" 
         className="countries"
+        data-testid="select-box"
         onChange={(event) => setSelectedValue(event.target.value)}
       >
-        <option value="choose">Select...</option>
+        <option value="Select">Select...</option>
           {countryOptions}
       </select>
       <Link to="/holidays" style={{ textDecoration: 'none' }}>
@@ -28,7 +29,7 @@ function Form({ countries, submitCountry }) {
           type="submit" 
           name="submit-btn" 
           className="submit-btn"
-          disabled={selectedValue.length<1 && selectedValue !== 'Select...' }
+          disabled={selectedValue.length < 1 && selectedValue !== 'Select...'}
           onClick={() => submitCountry(selectedValue)}
         >
           GO!

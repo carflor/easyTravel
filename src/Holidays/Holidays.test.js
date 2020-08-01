@@ -2,31 +2,57 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
 import Holidays from './Holidays.js'
-import { render, waitFor, fireEvent } from '@testing-library/react'
-import { BrowserRouter, MemoryRouter } from 'react-router-dom'
-// import { fetchName } from './apiCalls'
-// jest.mock('./apiCalls.js')
+import { render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
+// import { fetchHolidays } from '../apiCalls'
+// import { act } from 'react-dom/test-utils'
+// jest.mock('../apiCalls.js')
 
  
-describe.skip('Holidays', () => {
-  // it('renders App', () => {
-  //   const main = document.createElement('main')
-  //   ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, main)
-  //   ReactDOM.unmountComponentAtNode(main)
-  // })
+describe('Holidays', () => {
+  const isSelected = { value: 'Madagascar', key: 'MD' }
+  // fetchHolidays.mockResolvedValue([
+  //   {
+  //     "date": "2020-01-01",
+  //     "localName": "Viti i Ri",
+  //     "name": "New Year's Day",
+  //     "countryCode": "AL",
+  //     "fixed": true,
+  //     "global": true,
+  //     "counties": null,
+  //     "launchYear": null,
+  //     "type": "Public"
+  //   },
+  //   {
+  //     "date": "2020-01-02",
+  //     "localName": "Viti i Ri",
+  //     "name": "New Year's Day",
+  //     "countryCode": "AL",
+  //     "fixed": true,
+  //     "global": true,
+  //     "counties": null,
+  //     "launchYear": null,
+  //     "type": "Public"
+  //   }
+  // ])
 
-  // it('Should be able to render the nav items', () => {
-  //   const { getByText, getByRole } = render(
-  //     <BrowserRouter>
-  //       <App />
-  //     </BrowserRouter>) 
-  //   const title = getByText('EasyTravel')
-  //   const label = getByText('Destination')
-  //   const logInButton = getByRole('button', {name: 'GO!'})
-  //   expect(title).toBeInTheDocument()
-  //   expect(label).toBeInTheDocument()
-  //   expect(logInButton).toBeInTheDocument()
-  // })
+  it('Renders Holidays component', () => {
+    const main = document.createElement('main')
+    ReactDOM.render(<BrowserRouter><Holidays isSelected={isSelected} /></BrowserRouter>, main)
+    ReactDOM.unmountComponentAtNode(main)
+  })
 
-
+  it('Should display loading message before fetch resolves', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <Holidays isSelected={isSelected} />
+      </BrowserRouter>
+    ) 
+    const pageTitle = getByText('Holidays')
+    const countryTitle = getByText('Madagascar')
+    const loadingMessage = getByText('Loading Holidays...')
+    expect(pageTitle).toBeInTheDocument()
+    expect(countryTitle).toBeInTheDocument()
+    expect(loadingMessage).toBeInTheDocument()
+  })
 })
