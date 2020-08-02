@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 
 function Form({ countries, submitCountry }) {
   const [selectedValue, setSelectedValue] = useState('') 
-  const countryOptions = countries.map(country => {
-  return (
-      <option key={country.key} value={country.value}>{country.value}</option>
-    )
-  })
+  let countryOptions;
+  if (countries.length >= 1) {
+    countryOptions = countries.map(country => {
+    return (
+        <option key={country.key} value={country.value}>{country.value}</option>
+      )
+    })
+  }
   
 
   return (

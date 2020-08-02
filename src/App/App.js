@@ -5,7 +5,7 @@ import Holidays from '../Holidays/Holidays'
 import Saved from '../Saved/Saved'
 import Form from '../Form/Form'
 import { Route, Switch, Link } from 'react-router-dom'
-import { fetchCountries } from '../apiCalls'
+import { fetchCountries, fetchHolidays } from '../apiCalls'
 
 function App() {  
   const [isLoading, setIsLoading] = useState(true)

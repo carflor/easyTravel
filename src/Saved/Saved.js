@@ -40,7 +40,7 @@ function Saved({ attendArr, avoidArr, setAvoidArr, setAttendArr }) {
     const clickedCountry = event.target.parentElement.childNodes[0].innerText
     const clickedDate = event.target.parentElement.childNodes[1].innerText
     if (event.target.parentElement.classList[0] === 'attend-card') {
-      const foundAttend = attendArr.filter(holiday => holiday.name === clickedDate && holiday.country === clickedCountry)
+      const foundAttend = attendArr.find(holiday => holiday.date === clickedDate && holiday.country === clickedCountry)
       if (foundAttend) {
         const match = attendArr.find(day => day === foundAttend)
         const index = attendArr.indexOf(match)
@@ -56,7 +56,6 @@ function Saved({ attendArr, avoidArr, setAvoidArr, setAttendArr }) {
         const copyArr = [...avoidArr]
         const removeItem = copyArr.splice(index, 1)
         setAvoidArr(copyArr)
-
       }
     }
   }
