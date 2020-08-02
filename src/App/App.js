@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Link } from 'react-router-dom'
 import './App.css';
 import calendar from '../Assets/calendar-icon.svg'
 import Holidays from '../Holidays/Holidays'
 import Saved from '../Saved/Saved'
 import Form from '../Form/Form'
+import { Route, Switch, Link } from 'react-router-dom'
+import { fetchCountries, fetchHolidays } from '../apiCalls'
 
-function App() {
+function App() {  
   const [isLoading, setIsLoading] = useState(true)
   const [countries, setCountries] = useState([])
   const [error, setError] = useState(false)
   const [isSelected, setIsSelected] = useState({})
+  const [avoidArr, setAvoidArr] = useState([])
+  const [attendArr, setAttendArr] = useState([])
 
   const submitCountry = (value) => {
     const countrySelected = countries.find(country => country.value === value)
@@ -19,27 +22,13 @@ function App() {
   }
 
   const getCountries = () => {
-    fetch('https://fe-cors-proxy.herokuapp.com/', {
-      headers: {
-        'Target-URL': 'http://date.nager.at/Api/v2/AvailableCountries'
-      }
-    })
-      .then((res) => res.json())
+    fetchCountries()
       .then((res) => setCountries(res))
       .catch((err) => {
         setIsLoading(false)
         setError(true)
         console.log(err)
       })
-
-    // fetch('http://cors-anywhere.herokuapp.com/http://date.nager.at/Api/v2/AvailableCountries')
-    //   .then((res) => res.json())
-    //   .then((res) => setCountries(res))
-    //   .catch((err) => {
-    //     setIsLoading(false)
-    //     setIsError(true)
-    //     console.log(err)
-    //   })
     return { countries, isLoading, error }
   }
 
@@ -58,7 +47,6 @@ function App() {
             alt="calendar icon"
             src={ calendar }
             className="calendar-icon"
-            // onClick={} 
           /> 
         </Link>
         <section className="search-box">
@@ -73,9 +61,27 @@ function App() {
  
   return (
     <Switch>
-      {/* dynamic path /countries/:countryCode/holidays */}
-      <Route path="/holidays" render={() => <Holidays isSelected={isSelected} />} />
-      <Route path="/saved" render={() => <Saved />} />
+      <Route 
+        path='/countries/:countryCode/holidays'
+        render={() => {
+          return <Holidays 
+            countryCode={isSelected.key}
+            isSelected={isSelected} 
+            avoidArr={avoidArr} 
+            setAvoidArr={setAvoidArr} 
+            attendArr={attendArr} 
+            setAttendArr={setAttendArr}
+          />}} 
+      />
+      <Route 
+        path="/saved" 
+        render={() => <Saved 
+          avoidArr={avoidArr} 
+          attendArr={attendArr} 
+          setAttendArr={setAttendArr}
+          setAvoidArr={setAvoidArr}
+        />} 
+      />
       <Route path="/" render={() => main} />
     </Switch>
   )
