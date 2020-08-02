@@ -24,7 +24,7 @@ function Form({ countries, submitCountry }) {
         <option value="Select">Select...</option>
           {countryOptions}
       </select>
-      <Link to="/countries/:countryCode/holidays" style={{ textDecoration: 'none' }}>
+      <Link to={`/countries/${selectedValue}/holidays`} style={{ textDecoration: 'none' }}>
         <button 
           type="submit" 
           name="submit-btn" 

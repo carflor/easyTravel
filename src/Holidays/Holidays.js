@@ -8,31 +8,7 @@ function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }
   const [holidays, setHolidays] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
-  // const [avoidArr, setAvoidArr] = useState([])
 
-  // const [attendArry, setAttendArr] = useState([])
-  // const [status, setStatus] = useState('') 
-  // do i need an avoid array
-  // do i need an attend array
-
-  // const getHolidays = async () => {
-    // await fetch('https://fe-cors-proxy.herokuapp.com/', {
-    //   headers: {
-    //     'Target-URL': `https://date.nager.at/Api/v2/NextPublicHolidays/${isSelected.key}`
-    //   }
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setHolidays(res)
-    //     setIsLoading(false)
-    //   })
-    //   .catch((err) => {
-    //     setIsLoading(false)
-    //     setError(true)
-    //     console.log(err)
-    //   })
-    // return { holidays, isLoading, error}
-  // }
   const getHolidays = () => {
     fetchHolidays(isSelected.key)
       .then((res) => {
@@ -54,7 +30,6 @@ function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }
   const yearlyHolidays = () => {
     let id = 1;
     return holidays.map(holiday => {
-      // console.log(holiday, 'holiday in MAP')
       return (
        <HolidayCard 
         key={id++} 

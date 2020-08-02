@@ -5,30 +5,20 @@ import thumbDown from '../Assets/thumb-down.png'
 
 
 function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, setAttendArr }) {
-
-  // conditional render for something being in local storage
   const [avoidItem, setAvoidItem] = useState(false)
   const [attendItem, setAttendItem] = useState(false)
 
-  // localStorage.setItem('avoid', JSON.stringify('avoid'))
-  // let avoidList = JSON.parse(localStorage.getItem('avoid') || '[]')
-  // console.log(avoidList)
-  // const [avoidArr, setAvoidArr] = useState([]) 
   const saveHoliday = (event) => {
     if (event.target.alt === 'thumb down icon') {
       holiday.country = isSelected.value
       setAvoidArr([...avoidArr, holiday])
       setAvoidItem(!avoidItem)
-      // localStorage.setItem('avoid', JSON.stringify(holiday))
-      // setAvoidArr([holiday])
-      // avoidList.push(holiday)
     } 
 
     if (event.target.alt === 'thumb up icon') {
       holiday.country = isSelected.value
       setAttendArr([...attendArr, holiday])
       setAttendItem(!attendItem)
-      // localStorage.setItem('attend', JSON.stringify(holiday))
     }
 
     if (avoidItem) {
@@ -37,7 +27,6 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
       const copyArr = [...avoidArr]
       const removeItem = copyArr.splice(index, 1)
       setAvoidArr(copyArr)
-      // localStorage.removeItem('avoid', holiday)
     }
 
     if (attendItem) {
@@ -46,7 +35,6 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
       const copyArr = [...attendArr]
       const removeItem = copyArr.splice(index, 1)
       setAttendArr(copyArr)
-      // localStorage.removeItem('attend', holiday)
     }
   }
 
