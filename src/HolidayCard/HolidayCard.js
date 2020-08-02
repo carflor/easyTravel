@@ -1,26 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './HolidayCard.css'
 import thumbUp from '../Assets/thumb-up.png'
 import thumbDown from '../Assets/thumb-down.png'
 
 
-function HolidayCard({ id, holiday, setSelected }) {
-  // do i need a use effect for checking on load?
-  const saveHoliday = (event) => {
-    console.log(event.target, 'event in holiday icon')
-    console.log(event.target.parentElement.parentElement.childNodes[0], 'event value in holiday icon')
+function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, setAttendArr }) {
 
-    // setStatus
-    // setStatus('avoid')
-    // setStatus('attend')
-    setSelected({
-      avoid: [],
-      attend: []
-    })
+  // conditional render for something being in local storage
+  const [avoidItem, setAvoidItem] = useState(false)
+  const [attendItem, setAttendItem] = useState(false)
+
+  // localStorage.setItem('avoid', JSON.stringify('avoid'))
+  // let avoidList = JSON.parse(localStorage.getItem('avoid') || '[]')
+  // console.log(avoidList)
+  // const [avoidArr, setAvoidArr] = useState([]) 
+  const saveHoliday = (event) => {
+    if (event.target.alt === 'thumb down icon') {
+      holiday.country = isSelected.value
+      setAvoidArr([...avoidArr, holiday])
+      setAvoidItem(!avoidItem)
+      // localStorage.setItem('avoid', JSON.stringify(holiday))
+      // setAvoidArr([holiday])
+      // avoidList.push(holiday)
+    } 
+
+    if (event.target.alt === 'thumb up icon') {
+      holiday.country = isSelected.value
+      setAttendArr([...attendArr, holiday])
+      setAttendItem(!attendItem)
+      // localStorage.setItem('attend', JSON.stringify(holiday))
+    }
+
+    if (avoidItem) {
+      const match = avoidArr.find(day => day === holiday)
+      const index = avoidArr.indexOf(match)
+      const copyArr = [...avoidArr]
+      const removeItem = copyArr.splice(index, 1)
+      setAvoidArr(copyArr)
+      // localStorage.removeItem('avoid', holiday)
+    }
+
+    if (attendItem) {
+      const match = attendArr.find(day => day === holiday)
+      const index = attendArr.indexOf(match)
+      const copyArr = [...attendArr]
+      const removeItem = copyArr.splice(index, 1)
+      setAttendArr(copyArr)
+      // localStorage.removeItem('attend', holiday)
+    }
   }
 
+  // const checkSaved = () => {
+  // go through array of saved n state
+  // if holiday object is in array then make sure to display no hands
+  // }
 
-
+  // useEffect(() => {
+  //   checkSaved()
+  // }, [ avoidItem, attendItem ])
 
   return (
     <section className="holiday-card">
@@ -35,17 +72,18 @@ function HolidayCard({ id, holiday, setSelected }) {
         </section>
       </section>
       <section className="thumb-container">
-        <img 
+        {!attendItem && <img 
           alt="thumb down icon"
           src={ thumbDown }
           className="thumb-down"
           onClick={saveHoliday}  
-        />
-        <img 
+        />}
+        {!avoidItem && <img 
           alt="thumb up icon"
           src={ thumbUp }
-          className="thumb-up"  
-        />
+          className="thumb-up" 
+          onClick={saveHoliday} 
+        />}
       </section>
     </section>
   )

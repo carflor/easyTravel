@@ -4,14 +4,12 @@ import HolidayCard from '../HolidayCard/HolidayCard'
 import { Link } from 'react-router-dom'
 import { fetchHolidays } from '../apiCalls.js'
 
-function Holidays({ isSelected }) {
+function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }) {
   const [holidays, setHolidays] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
-  const [selected, setSelected] = useState({
-    avoid: [],
-    attend: []
-  })
+  // const [avoidArr, setAvoidArr] = useState([])
+
   // const [attendArry, setAttendArr] = useState([])
   // const [status, setStatus] = useState('') 
   // do i need an avoid array
@@ -46,7 +44,7 @@ function Holidays({ isSelected }) {
         setError(true)
         console.log(err)
       })
-    return { holidays, isLoading, error}
+    return { holidays, isLoading, error }
   }
 
   useEffect(() => {
@@ -56,9 +54,18 @@ function Holidays({ isSelected }) {
   const yearlyHolidays = () => {
     let id = 1;
     return holidays.map(holiday => {
-      console.log(holiday, 'holiday in MAP')
+      // console.log(holiday, 'holiday in MAP')
       return (
-       <HolidayCard key={id++} holiday={holiday} setSelected={setSelected} />
+       <HolidayCard 
+        key={id++} 
+        id={id++}
+        holiday={holiday} 
+        isSelected={isSelected} 
+        setAvoidArr={setAvoidArr} 
+        avoidArr={avoidArr}
+        setAttendArr={setAttendArr} 
+        attendArr={attendArr}
+      />
       )
     })
   }
