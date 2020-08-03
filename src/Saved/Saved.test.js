@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
 import Saved from './Saved.js'
 import { render, waitFor, fireEvent } from '@testing-library/react'
-import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 // import { fetchName } from './apiCalls'
 // jest.mock('./apiCalls.js')
  
@@ -79,5 +79,39 @@ describe('Saved', () => {
     expect(typeDate).toBeInTheDocument()
   })
 
+  it('Should remove deleted card', () => {
+        const realUseState = React.useState
+        const mockInitialState = [...attendArr]
+        jest.spyOn(React, 'useState')
+        jest.fn(() => realUseState(...attendArr))
+    const { getByText, getAllByRole } = render(
+      <BrowserRouter>
+        <Saved avoidArr={avoidArr} attendArr={attendArr} />
+      </BrowserRouter>) 
+
+    const deleteIcons = getAllByRole('button', {name: 'X'})
+    const homeButton = getByText('HOME')
+
+    expect(homeButton).toBeInTheDocument()
+    expect(deleteIcons.length).toEqual(4)
+    fireEvent.click(deleteIcons[0])
+    fireEvent.click(deleteIcons[1])
+    // fireEvent.click(deleteIcons[2])
+    // fireEvent.click(deleteIcons[3])
+    expect(deleteIcons.length).toEqual(2)
+    // expect(mockInitialState.length).toEqual(0)
+
+    
+  })
+  // Cache original functionality
+  // const realUseState = React.useState
+  // // Stub the initial state
+  // const mockInitialState = ['mock data']
+  // // Mock useState before rendering your component
+  // jest
+  //   .spyOn(React, 'useState')
+  //   .mockImplementationOnce(() => realUseState(stubInitialState))
+  
+  // const title = getByText('C')
 
 })
