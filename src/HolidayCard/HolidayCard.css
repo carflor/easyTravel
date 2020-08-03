@@ -1,6 +1,5 @@
 .holiday-card {
   height: 25vh;
-    /* width: 95vw; */
   display: flex;
   flex-direction: column;
   margin: 1vh;

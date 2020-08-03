@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './HolidayCard.css'
 import PropTypes from 'prop-types'
 import thumbUp from '../Assets/thumb-up.png'
@@ -39,15 +39,6 @@ function HolidayCard({
       setAttendArr(copyArr)
     }
   }
-
-  // const checkSaved = () => {
-  // go through array of saved n state
-  // if holiday object is in array then make sure to display no hands
-  // }
-
-  // useEffect(() => {
-  //   checkSaved()
-  // }, [ avoidItem, attendItem ])
 
   return (
     <section className="holiday-card">
