@@ -6,39 +6,6 @@ import PropTypes from 'prop-types'
 function Saved({
   attendArr, avoidArr, setAvoidArr, setAttendArr
 }) {
-  const grabAttendList = (() => attendArr.map((card) => (
-    <section key={`${card.country} ${card.name}`} className="attend-card">
-      <p className="country-name-card">{card.country}</p>
-      <p className="date-card">{card.date}</p>
-      <p className="holiday-name-card">{card.name}</p>
-      <p className="holiday-type">
-        {card.type}
-        {' '}
-        Holiday
-      </p>
-      <button onClick={(e) => eraseDate(e)} className="remove-btn">X</button>
-    </section>
-  )))
-
-  const grabAvoidList = (() => avoidArr.map((card) => (
-    <section key={`${card.country} ${card.name}`} className="avoid-card">
-      <p className="country-name-card">{card.country}</p>
-      <p className="date-card">{card.date}</p>
-      <p className="holiday-name-card">{card.name}</p>
-      <p className="holiday-type">
-        {card.type}
-        {' '}
-        Holiday
-      </p>
-      <button onClick={(e) => eraseDate(e)} className="remove-btn">X</button>
-    </section>
-  )))
-
-  useEffect(() => {
-    grabAttendList()
-    grabAvoidList()
-  }, [])
-
   const eraseDate = (event) => {
     const clickedCountry = event.target.parentElement.childNodes[0].innerText
     const clickedDate = event.target.parentElement.childNodes[1].innerText
@@ -63,6 +30,39 @@ function Saved({
     }
   }
 
+  const grabAttendList = (() => attendArr.map((card) => (
+    <section key={`${card.country} ${card.name}`} className="attend-card">
+      <p className="country-name-card">{card.country}</p>
+      <p className="date-card">{card.date}</p>
+      <p className="holiday-name-card">{card.name}</p>
+      <p className="holiday-type">
+        {card.type}
+        {' '}
+        Holiday
+      </p>
+      <button type="button" onClick={(e) => eraseDate(e)} className="remove-btn" tabIndex="0">X</button>
+    </section>
+  )))
+
+  const grabAvoidList = (() => avoidArr.map((card) => (
+    <section key={`${card.country} ${card.name}`} className="avoid-card">
+      <p className="country-name-card">{card.country}</p>
+      <p className="date-card">{card.date}</p>
+      <p className="holiday-name-card">{card.name}</p>
+      <p className="holiday-type">
+        {card.type}
+        {' '}
+        Holiday
+      </p>
+      <button type="button" onClick={(e) => eraseDate(e)} className="remove-btn" tabIndex="0">X</button>
+    </section>
+  )))
+
+  useEffect(() => {
+    grabAttendList()
+    grabAvoidList()
+  }, [])
+
   return (
     <section className="saved-page">
       <section className="attend-container">
@@ -78,7 +78,7 @@ function Saved({
         </section>
       </section>
       <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <section className="back-button">HOME</section>
+        <section type="button" tabIndex="0" className="back-button">HOME</section>
       </Link>
     </section>
   )

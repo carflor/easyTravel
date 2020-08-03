@@ -62,6 +62,8 @@ function HolidayCard({
       <section className="thumb-container">
         {!attendItem && (
         <img
+          type="button"
+          tabIndex="0"
           alt="thumb down icon"
           src={thumbDown}
           className="thumb-down"
@@ -70,6 +72,8 @@ function HolidayCard({
         )}
         {!avoidItem && (
         <img
+          type="button"
+          tabIndex="0"
           alt="thumb up icon"
           src={thumbUp}
           className="thumb-up"

@@ -3,7 +3,7 @@ import './Holidays.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import HolidayCard from '../HolidayCard/HolidayCard'
-import { fetchHolidays } from '../apiCalls.js'
+import { fetchHolidays } from '../apiCalls'
 
 function Holidays({
   isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr
@@ -50,7 +50,7 @@ function Holidays({
     <section className="holidays-page">
       <section className="title-box">
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <h1 className="title-container">Holidays</h1>
+          <h1 type="button" className="title-container" tabIndex="0">Holidays</h1>
         </Link>
         <h1 className="country-name-container">{isSelected.value}</h1>
       </section>
