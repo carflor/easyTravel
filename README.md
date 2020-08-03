@@ -9,11 +9,11 @@ This project was tested with React Testing Library + Jest.
 
 ## Images
 
-![Main Page Mobile](https://github.com/carflor/easyTravel/blob/master/src/Assets/easyTravel1.png)
+![Main Page Mobile](./src/Assets/easyTravel1.png | width=120)
 
-![Select Holiday Page Mobile](./src/Assets/easyTravel1.png)
+![Select Holiday Page Mobile](./src/Assets/easyTravel2.png)
 
-![Saved Holidays Page Mobile](./Assets/easyTravel3.png)
+![Saved Holidays Page Mobile](./src/Assets/easyTravel3.png)
 
 
 
