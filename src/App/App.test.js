@@ -4,16 +4,14 @@ import '@testing-library/jest-dom/extend-expect'
 import {
   render, waitFor, fireEvent, screen
 } from '@testing-library/react'
-import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
+import { BrowserRouter, MemoryRouter, Router } from 'react-router-dom'
 import MutationObserver from '@sheerun/mutationobserver-shim'
 import { act } from 'react-dom/test-utils'
 import { fetchCountries, fetchHolidays } from '../apiCalls'
 import App from './App.js'
-
 jest.mock('../apiCalls')
 window.MutationObserver = MutationObserver
-// import { eraseDate } from './Saved/Saved'
-// const eraseDate = jest.fn()
 
 describe('App', () => {
   const originalError = console.error
@@ -60,13 +58,13 @@ describe('App', () => {
     }
   ])
 
-  it.skip('renders App', () => {
+  it('renders App', () => {
     const main = document.createElement('main')
     ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, main)
     ReactDOM.unmountComponentAtNode(main)
   })
 
-  it.skip('Should be able to render the nav items', () => {
+  it('Should be able to render the nav items', () => {
     const { getByText, getByRole } = render(
       <BrowserRouter>
         <App />
@@ -80,7 +78,7 @@ describe('App', () => {
     expect(logInButton).toBeInTheDocument()
   })
 
-  it.skip('Should be able to select a country and navigate into the holiday page', async () => {
+  it('Should be able to select a country and navigate into the holiday page, vote on holidays and see them in the appropriate sections in saved component', async () => {
     const {
       getByText, getByRole, getAllByRole, getByAltText, getAllByAltText, getByTestId, getAllByTestId
     } = render(
@@ -133,7 +131,7 @@ describe('App', () => {
     expect(countryTitle).toBeInTheDocument()
     expect(loadingMessage).toBeInTheDocument()
 
-    // START OF NEXT INTEGRATION TEST ________________________________________________________>>
+    // START OF INTEGRATION TEST 2 - HOLIDAYS PAGE______________________________>>
     const firstCardTitle = await waitFor(() => getByText('New Year\'s Day'))
     const firstHolidayName = await waitFor(() => getByText('Mock Example Name 1', { exact: false }))
     const firstHolidayDate = await waitFor(() => getByText('2020-01-01'))
@@ -165,7 +163,7 @@ describe('App', () => {
     expect(thumbsDownIcons.length).toEqual(3)
     expect(thumbsUpIcons.length).toEqual(3)
 
-    // POSSIBLY TEST 3 CHECKING FOR ICONS ON HOLIDAY PAGE BEING CLICKED AND DISPLAYED ON SAVED ----- ->>>
+    // START OF TEST 3 - SAVED PAGE INTEGRATION TEST--------------- ----- ->>>
     act(() => {
       fireEvent.click(thumbsUpIcons[0])
       fireEvent.click(thumbsUpIcons[1])
@@ -191,139 +189,165 @@ describe('App', () => {
     // const secondSavedAttendHoliday = getByText(`New Year's Day`)
     const firstSavedAvoidHoliday = getByText('Day of the Blue Butterflies')
     const deleteIcons = getAllByRole('button', { name: 'X' })
+    const homeBtn = getByText('HOME')
     expect(savedAvoidTitle).toBeInTheDocument()
     expect(savedAttendTitle).toBeInTheDocument()
     expect(firstSavedAttendHoliday).toBeInTheDocument()
     expect(firstSavedAvoidHoliday).toBeInTheDocument()
     expect(deleteIcons.length).toEqual(2)
+    expect(homeBtn).toBeInTheDocument()
 
+    // Integration Test 4 for switching from saved component back to app ------------>>>>>>>>>>>>
     act(() => {
       fireEvent.click(deleteIcons[0])
       fireEvent.click(deleteIcons[1])
+      fireEvent.click(homeBtn)
     })
 
-    expect(firstSavedAttendHoliday).not.toBeInTheDocument()
-
-    // act(() => {
-    //   fireEvent.click(deleteIcons[0])
-    // })
-
-    // expect(firstSavedAvoidHoliday).not.toBeInTheDocument()
+    const backToMainTitle = getByText('EasyTravel')
+    const backToGoBtn = getByRole('button', {name: 'GO!'})
+    expect(backToMainTitle).toBeInTheDocument()
+    expect(backToGoBtn).toBeInTheDocument()
   })
 
-  // it('Should be able to vote on a holiday once user navigates to holiday page', async () => {
-  //   const { getByText, getByRole, getByTestId, getAllByTestId } = render(
-  //     <BrowserRouter>
-  //       <App />
-  //     </BrowserRouter>)
-  // const title = getByText('EasyTravel')
-  // const label = getByText('Destination')
-  // const goButton = getByRole('button', {name: 'GO!'})
-  // const selectBox = getByTestId('select-box')
-  // expect(title).toBeInTheDocument()
-  // expect(label).toBeInTheDocument()
-  // expect(goButton).toBeInTheDocument()
-  // expect(selectBox).toBeInTheDocument()
-  // act(() => {
-  //   fireEvent.click(selectBox)
-  // })
-  // const countryOptions = await waitFor(() => getAllByTestId('select-option'))
-  // const option1 = await waitFor(() => getByText('Belize'))
-  // const option2 = await waitFor(() => getByText('Brazil'))
-  // const option3 = await waitFor(() => getByText('Barbados'))
-  // const option4 = await waitFor(() => getByText('Benin'))
-  // expect(countryOptions.length).toEqual(4)
-  // expect(option1).toBeInTheDocument()
-  // expect(option2).toBeInTheDocument()
-  // expect(option3).toBeInTheDocument()
-  // expect(option4).toBeInTheDocument()
-  // act(() => {
-  //   fireEvent.change(selectBox, { target: { value: 'Barbados'}})
-  //   fireEvent.click(selectBox, { target: { value: 'Barbados'}})
-  // })
-  // act(() => {
-  //   fireEvent.click(goButton)
-  // })
-  //   const holidayPage = getByText('Holidays')
-  //   const countryTitle = getByText('Barbados')
-  //   const loadingMessage = getByText('Loading Holidays...')
-  //   expect(holidayPage).toBeInTheDocument()
-  //   expect(countryTitle).toBeInTheDocument()
-  //   expect(loadingMessage).toBeInTheDocument()
-  // })
+  it('Should be able to vote on a holiday once user navigates to holiday page', async () => {
+    const { getByText, getByRole, getByTestId, getAllByTestId } = render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>)
+    const title = getByText('EasyTravel')
+    const label = getByText('Destination')
+    const goButton = getByRole('button', {name: 'GO!'})
+    const selectBox = getByTestId('select-box')
+    expect(title).toBeInTheDocument()
+    expect(label).toBeInTheDocument()
+    expect(goButton).toBeInTheDocument()
+    expect(selectBox).toBeInTheDocument()
+    act(() => {
+      fireEvent.click(selectBox)
+    })
+    const countryOptions = await waitFor(() => getAllByTestId('select-option'))
+    const option1 = await waitFor(() => getByText('Belize'))
+    const option2 = await waitFor(() => getByText('Brazil'))
+    const option3 = await waitFor(() => getByText('Barbados'))
+    const option4 = await waitFor(() => getByText('Benin'))
+    expect(countryOptions.length).toEqual(4)
+    expect(option1).toBeInTheDocument()
+    expect(option2).toBeInTheDocument()
+    expect(option3).toBeInTheDocument()
+    expect(option4).toBeInTheDocument()
+    act(() => {
+      fireEvent.change(selectBox, { target: { value: 'Barbados'}})
+      fireEvent.click(selectBox, { target: { value: 'Barbados'}})
+    })
+    act(() => {
+      fireEvent.click(goButton)
+    })
+    const holidayPage = getByText('Holidays')
+    const countryTitle = getByText('Barbados')
+    const loadingMessage = getByText('Loading Holidays...')
+    expect(holidayPage).toBeInTheDocument()
+    expect(countryTitle).toBeInTheDocument()
+    expect(loadingMessage).toBeInTheDocument()
+  })
+
+  it('Should change location when saved icon button is clicked', async () => {
+    const testHistoryObject = createMemoryHistory()
+    const { getByText, getByRole, getByTestId, getAllByTestId } = render(
+      <Router history={testHistoryObject} >
+        <App />
+      </Router>)
+    expect(testHistoryObject.location.pathname).toEqual('/')
+    const calendarIcon = getByRole('img')
+    expect(calendarIcon).toBeInTheDocument()
+    fireEvent.click(calendarIcon)
+    expect(testHistoryObject.location.pathname).toEqual('/saved')
+  })
+
+  it('Should change path location when country is selected and go button is clicked', async () => {
+    const testHistoryObject = createMemoryHistory()
+    const { getByText, getByRole, getByTestId, getAllByTestId } = render(
+      <Router history={testHistoryObject} >
+        <App />
+      </Router>)
+    expect(testHistoryObject.location.pathname).toEqual('/')
+    const calendarIcon = getByRole('img')
+    const goButton = getByRole('button', {name: 'GO!'})
+    const selectBox = getByTestId('select-box')
+    expect(calendarIcon).toBeInTheDocument()
+    expect(goButton).toBeInTheDocument()
+    expect(selectBox).toBeInTheDocument()
+    act(() => {
+      fireEvent.click(selectBox)
+    })
+    const countryOptions = await waitFor(() => getAllByTestId('select-option'))
+    const option1 = await waitFor(() => getByText('Belize'))
+    const option2 = await waitFor(() => getByText('Brazil'))
+    const option3 = await waitFor(() => getByText('Barbados'))
+    const option4 = await waitFor(() => getByText('Benin'))
+    expect(countryOptions.length).toEqual(4)
+    expect(option1).toBeInTheDocument()
+    expect(option2).toBeInTheDocument()
+    expect(option3).toBeInTheDocument()
+    expect(option4).toBeInTheDocument()
+    act(() => {
+      fireEvent.change(selectBox, { target: { value: 'Brazil'}})
+      fireEvent.click(selectBox, { target: { value: 'Brazil'}})
+    })
+    act(() => {
+      fireEvent.click(goButton)
+    })
+    expect(testHistoryObject.location.pathname).toEqual('/countries/Brazil/holidays')
+  })
+
+  it('Should dynamically change location when a different country is selected and go button is clicked', async () => {
+    const testHistoryObject = createMemoryHistory()
+    const { getByText, getByRole, getByTestId, getAllByTestId } = render(
+      <Router history={testHistoryObject} >
+        <App />
+      </Router>)
+    expect(testHistoryObject.location.pathname).toEqual('/')
+    const calendarIcon = getByRole('img')
+    const goButton = getByRole('button', {name: 'GO!'})
+    const selectBox = getByTestId('select-box')
+    expect(calendarIcon).toBeInTheDocument()
+    expect(goButton).toBeInTheDocument()
+    expect(selectBox).toBeInTheDocument()
+    act(() => {
+      fireEvent.click(selectBox)
+    })
+    const countryOptions = await waitFor(() => getAllByTestId('select-option'))
+    const option1 = await waitFor(() => getByText('Belize'))
+    const option2 = await waitFor(() => getByText('Brazil'))
+    const option3 = await waitFor(() => getByText('Barbados'))
+    const option4 = await waitFor(() => getByText('Benin'))
+    expect(countryOptions.length).toEqual(4)
+    expect(option1).toBeInTheDocument()
+    expect(option2).toBeInTheDocument()
+    expect(option3).toBeInTheDocument()
+    expect(option4).toBeInTheDocument()
+    act(() => {
+      fireEvent.change(selectBox, { target: { value: 'Benin'}})
+      fireEvent.click(selectBox, { target: { value: 'Benin'}})
+    })
+    act(() => {
+      fireEvent.click(goButton)
+    })
+    expect(testHistoryObject.location.pathname).toEqual('/countries/Benin/holidays')
+  })
+
+  it.skip('should render error message if fetch is not successful', async () => {
+    fetchCountries.mockRejectedValueOnce(new Error('Issue consolidating data! Please refresh.'))
+    const { getByText } = render(
+      <MemoryRouter><App /></MemoryRouter>
+    )
+    const option1 = await waitFor(() => getByText('Belize'))
+    const option2 = await waitFor(() => getByText('Brazil'))
+    const option3 = await waitFor(() => getByText('Barbados'))
+    expect(option1).not.toBeInTheDocument()
+    expect(option2).not.toBeInTheDocument()
+    expect(option3).not.toBeInTheDocument()
+    const errorMessage = getByText('Issue consolidating data! Please refresh.')
+    expect(errorMessage).toBeInTheDocument()
+  })
 })
-
-// model for history of path test
-// it('Should change locations when the log in button is clicked', async () => {
-//   const testHistoryObject = createMemoryHistory()
-
-//   getMovieData.mockResolvedValueOnce({
-//     "movie": {
-//       "id": 475430,
-//       "title": "Artemis Fowl",
-//       "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-//       "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
-//       "release_date": "2020-06-12",
-//       "overview": "Artemis Fowl is a 12-year-old genius and descendant of a long line of criminal masterminds. He soon finds himself in an epic battle against a race of powerful underground fairies who may be behind his father’s disappearance.",
-//       "genres": [
-//         "Adventure",
-//         "Fantasy",
-//         "Science Fiction",
-//         "Family"
-//       ],
-//       "budget": 125000000,
-//       "revenue": 0,
-//       "runtime": 95,
-//       "tagline": "Remember the name",
-//       "average_rating": 3
-//     }
-//   })
-
-//   getMovieComments.mockResolvedValueOnce(
-//     [{
-//     "id": 1,
-//     "author": "albert",
-//     "movie_id": 338762,
-//     "comment": "Jumping street car! Look at those action scenes!"
-//     },
-//     {
-//     "id": 2,
-//     "author": "mike",
-//     "movie_id": 475430,
-//     "comment": "Conceptually amazing, it could almost be a book!"
-//     }]
-//   )
-//   const { getAllByAltText } = render(
-//     <Router history={ testHistoryObject }>
-//     <App />
-//   </Router> )
-//   expect(testHistoryObject.location.pathname).toEqual('/')
-//   const movieLink = await waitFor(() => getAllByAltText('film-poster')[0])
-//   fireEvent.click(movieLink)
-//   expect(testHistoryObject.location.pathname).toEqual('/movies/475430')
-// })
-
-// sad path test
-
-// it('renders error message', async () => {
-//   getMovies.mockRejectedValueOnce(new Error('Pardon the disturbance in the force...'))
-//   const { getByText } = render(
-//       <MemoryRouter>
-//         <App />
-//       </MemoryRouter>);
-//     const linkElement = await waitFor(() => getByText('Pardon the disturbance in the force...'));
-//     expect(linkElement).toBeInTheDocument();
-//   })
-
-// another change location test
-//   it('Should change locations when the log in button is clicked', async () => {
-//     const testHistoryObject = createMemoryHistory()
-//     const { getByRole } = render(
-//       <Router history={ testHistoryObject }>
-//         <App />
-//       </Router> )
-//   expect(testHistoryObject.location.pathname).toEqual('/')
-//   const logInButton = await waitFor(() => getByRole('button', {name: 'LOG IN'}))
-//   fireEvent.click(logInButton)
-//   expect(testHistoryObject.location.pathname).toEqual('/login')
-// })

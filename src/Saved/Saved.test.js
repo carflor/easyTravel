@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, waitFor, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Saved from './Saved.js'
-// import { fetchName } from './apiCalls'
-// jest.mock('./apiCalls.js')
 
 describe('Saved', () => {
   const avoidArr = [
@@ -81,38 +79,29 @@ describe('Saved', () => {
   })
 
   it('Should remove deleted card', () => {
-    const realUseState = React.useState
-    const mockInitialState = [...attendArr]
-    jest.spyOn(React, 'useState')
-    jest.fn(() => realUseState(...attendArr))
+    const setAvoidArr = jest.fn()
+    const setAttendArr = jest.fn()
+    // const realUseState = React.useState
+    // const mockInitialState = [...attendArr]
+    // jest.spyOn(React, 'useState')
+    // jest.fn(() => realUseState(...attendArr))
+    // const eraseDate = jest.fn()
+
     const { getByText, getAllByRole } = render(
       <BrowserRouter>
-        <Saved avoidArr={avoidArr} attendArr={attendArr} />
+        <Saved avoidArr={avoidArr} setAvoidArr={setAvoidArr} setAttendArr={setAttendArr} attendArr={attendArr} />
       </BrowserRouter>
     )
-
     const deleteIcons = getAllByRole('button', { name: 'X' })
     const homeButton = getByText('HOME')
-
+    //mock setAttend and setAvoid and pass as props int oSaved
+    // assert that fn get called twice, spy on fn being called
     expect(homeButton).toBeInTheDocument()
     expect(deleteIcons.length).toEqual(4)
     fireEvent.click(deleteIcons[0])
     fireEvent.click(deleteIcons[1])
-    // fireEvent.click(deleteIcons[2])
-    // fireEvent.click(deleteIcons[3])
-    expect(deleteIcons.length).toEqual(2)
-    // expect(mockInitialState.length).toEqual(0)
+    fireEvent.click(deleteIcons[2])
+    fireEvent.click(deleteIcons[3])
+    expect(setAvoidArr).toHaveBeenCalledTimes(0)    
   })
-
-  
-  // Cache original functionality
-  // const realUseState = React.useState
-  // // Stub the initial state
-  // const mockInitialState = ['mock data']
-  // // Mock useState before rendering your component
-  // jest
-  //   .spyOn(React, 'useState')
-  //   .mockImplementationOnce(() => realUseState(stubInitialState))
-
-  // const title = getByText('C')
 })
