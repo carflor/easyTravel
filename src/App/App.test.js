@@ -9,6 +9,8 @@ jest.mock('../apiCalls')
 import MutationObserver from '@sheerun/mutationobserver-shim'
 import { act } from 'react-dom/test-utils'
 window.MutationObserver = MutationObserver
+// import { eraseDate } from './Saved/Saved'
+// const eraseDate = jest.fn()
 
  
 describe('App', () => {
@@ -182,7 +184,7 @@ describe('App', () => {
     const savedAttendTitle = getByText('Attend')
     const firstSavedAttendHoliday = getByText('Day of the Dog')
     // const secondSavedAttendHoliday = getByText(`New Year's Day`)
-    const firstSavedAvoidHoliday = getByText('Day of the Blue Butterflies')
+    const firstSavedAvoidHoliday = getByText('Day of the Blue Buttrflies')
     const deleteIcons = getAllByRole('button', {name: 'X'})
     expect(savedAvoidTitle).toBeInTheDocument()
     expect(savedAttendTitle).toBeInTheDocument()
@@ -192,6 +194,7 @@ describe('App', () => {
 
     act(() => {
       fireEvent.click(deleteIcons[0])
+      fireEvent.click(deleteIcons[1])
     })
 
     expect(firstSavedAttendHoliday).not.toBeInTheDocument()

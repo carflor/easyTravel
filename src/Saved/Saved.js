@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './Saved.css'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function Saved({ attendArr, avoidArr, setAvoidArr, setAttendArr }) {
   const grabAttendList = () => {
@@ -82,3 +83,10 @@ function Saved({ attendArr, avoidArr, setAvoidArr, setAttendArr }) {
 }
 
 export default Saved
+
+Saved.propTypes = {
+  attendArr: PropTypes.array,
+  avoidArr: PropTypes.array,
+  setAttendArr: PropTypes.func,
+  setAvoidArr: PropTypes.func
+}

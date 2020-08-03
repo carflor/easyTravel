@@ -3,6 +3,7 @@ import './Holidays.css'
 import HolidayCard from '../HolidayCard/HolidayCard'
 import { Link } from 'react-router-dom'
 import { fetchHolidays } from '../apiCalls.js'
+import PropTypes from 'prop-types'
 
 function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }) {
   const [holidays, setHolidays] = useState([])
@@ -63,3 +64,11 @@ function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }
 }
 
 export default Holidays
+
+Holidays.propTypes = {
+  isSelected: PropTypes.object, 
+  setAttendArr: PropTypes.func, 
+  setAvoidArr: PropTypes.func, 
+  avoidArr: PropTypes.array, 
+  attendArr: PropTypes.array 
+}

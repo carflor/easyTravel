@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './HolidayCard.css'
 import thumbUp from '../Assets/thumb-up.png'
 import thumbDown from '../Assets/thumb-down.png'
+import PropTypes from 'prop-types'
 
 
 function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, setAttendArr }) {
@@ -78,3 +79,12 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
 }
 
 export default HolidayCard
+
+HolidayCard.propTypes = {
+  holiday: PropTypes.object,
+  isSelected: PropTypes.object, 
+  setAttendArr: PropTypes.func, 
+  setAvoidArr: PropTypes.func, 
+  avoidArr: PropTypes.array, 
+  attendArr: PropTypes.array 
+}

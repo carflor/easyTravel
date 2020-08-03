@@ -45,3 +45,8 @@ function Form({ countries, submitCountry }) {
 }
 
 export default Form
+
+Form.propTypes = {
+  countries: PropTypes.array,
+  submitCountry: PropTypes.func
+}
