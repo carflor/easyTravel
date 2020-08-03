@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import './Form.css'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 function Form({ countries, submitCountry }) {
   const [selectedValue, setSelectedValue] = useState('') 
+  console.log(selectedValue, 'thing being passed into undefined')
   let countryOptions;
   if (countries.length >= 1) {
     countryOptions = countries.map(country => {
     return (
-        <option key={country.key} value={country.value}>{country.value}</option>
+        <option data-testid="select-option" key={country.key} value={country.value}>{country.value}</option>
       )
     })
   }

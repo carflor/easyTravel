@@ -34,6 +34,7 @@ function Holidays({ isSelected, setAttendArr, setAvoidArr, avoidArr, attendArr }
        <HolidayCard 
         key={id++} 
         id={id++}
+        // data-testid="holidayCard-testId"
         holiday={holiday} 
         isSelected={isSelected} 
         setAvoidArr={setAvoidArr} 

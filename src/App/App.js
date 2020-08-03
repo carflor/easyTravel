@@ -5,7 +5,7 @@ import Holidays from '../Holidays/Holidays'
 import Saved from '../Saved/Saved'
 import Form from '../Form/Form'
 import { Route, Switch, Link } from 'react-router-dom'
-import { fetchCountries, fetchHolidays } from '../apiCalls'
+import { fetchCountries } from '../apiCalls'
 
 function App() {  
   const [isLoading, setIsLoading] = useState(true)
@@ -65,7 +65,7 @@ function App() {
         path='/countries/:countryCode/holidays'
         render={() => {
           return <Holidays 
-            countryCode={isSelected.key}
+            // countryCode={isSelected.key}
             isSelected={isSelected} 
             avoidArr={avoidArr} 
             setAvoidArr={setAvoidArr} 
