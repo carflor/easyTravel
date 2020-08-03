@@ -9,7 +9,7 @@ This project was tested with React Testing Library + Jest.
 
 ## Images
 
-![Main Page Mobile](./src/Assets/easyTravel1.png | width=120)
+![Main Page Mobile](https://github.com/carflor/easyTravel/blob/master/src/Assets/easyTravel1.png&s=150)
 
 ![Select Holiday Page Mobile](./src/Assets/easyTravel2.png)
 
