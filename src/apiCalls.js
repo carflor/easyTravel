@@ -27,8 +27,9 @@ const fetchCountries = () => {
     }
   })
 
-    // fetch('http://cors-anywhere.herokuapp.com/http://date.nager.at/Api/v2/AvailableCountries')
-    //   .then((res) => res.json())
+  // alt working fetch
+  // fetch('http://cors-anywhere.herokuapp.com/http://date.nager.at/Api/v2/AvailableCountries')
+  //   .then((res) => res.json())
 }
 
 export { fetchHolidays, fetchCountries }

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import './App.css'
+import { Route, Switch, Link } from 'react-router-dom'
 import calendar from '../Assets/calendar-icon.svg'
 import Holidays from '../Holidays/Holidays'
 import Saved from '../Saved/Saved'
 import Form from '../Form/Form'
-import { Route, Switch, Link } from 'react-router-dom'
-import { fetchCountries, fetchHolidays } from '../apiCalls'
+import { fetchCountries } from '../apiCalls'
 
-function App() {  
+function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [countries, setCountries] = useState([])
   const [error, setError] = useState(false)
@@ -16,9 +16,8 @@ function App() {
   const [attendArr, setAttendArr] = useState([])
 
   const submitCountry = (value) => {
-    const countrySelected = countries.find(country => country.value === value)
+    const countrySelected = countries.find((country) => country.value === value)
     setIsSelected(countrySelected)
-    console.log(countrySelected, 'selection in submit country in app')
   }
 
   const getCountries = () => {
@@ -45,42 +44,45 @@ function App() {
         <Link to="/saved" style={{ textDecoration: 'none' }}>
           <img
             alt="calendar icon"
-            src={ calendar }
+            src={calendar}
             className="calendar-icon"
-          /> 
+          />
         </Link>
         <section className="search-box">
-          <Form 
-            countries={countries} 
-            submitCountry={submitCountry} 
+          <Form
+            countries={countries}
+            submitCountry={submitCountry}
           />
         </section>
+        {error && <p>Error getting data, please refresh!</p>}
       </section>
-    </main> 
+    </main>
   )
- 
+
   return (
     <Switch>
-      <Route 
-        path='/countries/:countryCode/holidays'
-        render={() => {
-          return <Holidays 
-            countryCode={isSelected.key}
-            isSelected={isSelected} 
-            avoidArr={avoidArr} 
-            setAvoidArr={setAvoidArr} 
-            attendArr={attendArr} 
+      <Route
+        path="/countries/:countryCode/holidays"
+        render={() => (
+          <Holidays
+            isSelected={isSelected}
+            avoidArr={avoidArr}
+            setAvoidArr={setAvoidArr}
+            attendArr={attendArr}
             setAttendArr={setAttendArr}
-          />}} 
+          />
+        )}
       />
-      <Route 
-        path="/saved" 
-        render={() => <Saved 
-          avoidArr={avoidArr} 
-          attendArr={attendArr} 
-          setAttendArr={setAttendArr}
-          setAvoidArr={setAvoidArr}
-        />} 
+      <Route
+        path="/saved"
+        render={() => (
+          <Saved
+            avoidArr={avoidArr}
+            attendArr={attendArr}
+            setAttendArr={setAttendArr}
+            setAvoidArr={setAvoidArr}
+          />
+        )}
       />
       <Route path="/" render={() => main} />
     </Switch>

@@ -1,15 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
-import Form from './Form.js'
-import { render, waitFor, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-// import { fetchName } from './apiCalls'
-// jest.mock('./apiCalls.js')
+import Form from './Form.js'
 const submitCountry = jest.fn()
 
 describe('Form', () => {
-  let countries = [
+  const countries = [
     { value: 'Albania', key: 'AL' },
     { value: 'Costa Rica', key: 'CR' },
     { value: 'Germany', key: 'GR' }
@@ -17,15 +15,16 @@ describe('Form', () => {
 
   it('renders a Form', () => {
     const main = document.createElement('main')
-    ReactDOM.render(<BrowserRouter><Form countries={countries} submitCountry={submitCountry}/></BrowserRouter>, main)
+    ReactDOM.render(<BrowserRouter><Form countries={countries} submitCountry={submitCountry} /></BrowserRouter>, main)
     ReactDOM.unmountComponentAtNode(main)
   })
 
   it('Should be able to render the nav items', () => {
     const { getByText, getByTestId } = render(
       <BrowserRouter>
-        <Form countries={countries} submitCountry={submitCountry}/>
-      </BrowserRouter>) 
+        <Form countries={countries} submitCountry={submitCountry} />
+      </BrowserRouter>
+    )
     const button = getByText('GO!')
     const selectBox = getByTestId('select-box')
     expect(button).toBeInTheDocument()

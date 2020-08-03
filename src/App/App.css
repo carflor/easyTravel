@@ -19,23 +19,49 @@
 }
 
 .country-container {
+  justify-content: space-around;
+  align-items: flex-start;
   height: 75vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #FBD1A2;
   border-bottom: 9px solid #7DCFB6;
+  padding-top: 7vh;
+}
+
+.countries {
+  border-radius: 1vh;
+  height: 10vh;
+  margin: 1vh;
+}
+
+.submit-btn {
+  margin: 1vh;
 }
 
 .calendar-icon {
   width: 10vw;
+  margin-left: 17vw;
+  margin-top: 16vh;
+}
+
+.calendar-icon:hover,
+.calendar-icon:active,
+.calendar-icon:focus {
+  cursor: pointer;
+  box-shadow: 0 0 3px 3px #7DCFB6;
+  transform: scale(1.03);
+  transition: transform .3s;
 }
 
 .page-title {
   font-size: 7vw;
   letter-spacing: .7vh;
+}
+
+.input-title {
+  font-size: 5vh;
+  margin-top: 22vh;
 }
 
 @media screen and (max-width: 760px) {
@@ -56,6 +82,7 @@
     justify-content: center;
     align-items: center;
     background-color: #FBD1A2;
+    padding-top: 0vh;
   }
 
   .search-box {
@@ -72,5 +99,22 @@
 
   .calendar-icon {
     width: 15vw;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .calendar-icon:hover,
+  .calendar-icon:active,
+  .calendar-icon:focus {
+    cursor: pointer;
+    box-shadow: 0 0 3px 3px #7DCFB6;
+    transform: scale(1.03);
+    transition: transform .3s;
+    border-radius: 1vh;
+  }
+
+  .input-title {
+    margin-top: 0;
+    font-size: 4vh;
   }
 }
