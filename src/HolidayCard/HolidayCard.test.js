@@ -1,23 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
-import HolidayCard from './HolidayCard.js'
 import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import HolidayCard from './HolidayCard.js'
 // import { fetchName } from './apiCalls'
 // jest.mock('./apiCalls.js')
 
 describe('HolidayCard', () => {
   const holidayObj = {
     counties: null,
-    countryCode: "AR",
-    date: "2021-05-01",
+    countryCode: 'AR',
+    date: '2021-05-01',
     fixed: true,
     global: true,
     launchYear: null,
-    localName: "Día del Trabajador",
-    name: "Labour Day",
-    type: "Public"
+    localName: 'Día del Trabajador',
+    name: 'Labour Day',
+    type: 'Public'
   }
 
   it('Renders HolidayCard', () => {
@@ -34,7 +34,8 @@ describe('HolidayCard', () => {
     const { getByText, getByAltText, getByTestId } = render(
       <BrowserRouter>
         <HolidayCard key={1} holiday={holidayObj} />
-      </BrowserRouter>) 
+      </BrowserRouter>
+    )
     const name = getByText('Labour Day')
     const localName = getByTestId('local-name')
     const type = getByText('Public Holiday')

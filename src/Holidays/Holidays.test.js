@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
-import Holidays from './Holidays.js'
 import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
+import Holidays from './Holidays.js'
 // import { fetchHolidays } from '../apiCalls'
 // import { act } from 'react-dom/test-utils'
 // jest.mock('../apiCalls.js')
 
- 
 describe('Holidays', () => {
   const isSelected = { value: 'Madagascar', key: 'MD' }
   // fetchHolidays.mockResolvedValue([
@@ -47,7 +46,7 @@ describe('Holidays', () => {
       <BrowserRouter>
         <Holidays isSelected={isSelected} />
       </BrowserRouter>
-    ) 
+    )
     const pageTitle = getByText('Holidays')
     const countryTitle = getByText('Madagascar')
     const loadingMessage = getByText('Loading Holidays...')

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './HolidayCard.css'
+import PropTypes from 'prop-types'
 import thumbUp from '../Assets/thumb-up.png'
 import thumbDown from '../Assets/thumb-down.png'
-import PropTypes from 'prop-types'
 
-
-function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, setAttendArr }) {
+function HolidayCard({
+  holiday, isSelected, setAvoidArr, avoidArr, attendArr, setAttendArr
+}) {
   const [avoidItem, setAvoidItem] = useState(false)
   const [attendItem, setAttendItem] = useState(false)
 
@@ -14,7 +15,7 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
       holiday.country = isSelected.value
       setAvoidArr([...avoidArr, holiday])
       setAvoidItem(!avoidItem)
-    } 
+    }
 
     if (event.target.alt === 'thumb up icon') {
       holiday.country = isSelected.value
@@ -23,7 +24,7 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
     }
 
     if (avoidItem) {
-      const match = avoidArr.find(day => day === holiday)
+      const match = avoidArr.find((day) => day === holiday)
       const index = avoidArr.indexOf(match)
       const copyArr = [...avoidArr]
       const removeItem = copyArr.splice(index, 1)
@@ -31,7 +32,7 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
     }
 
     if (attendItem) {
-      const match = attendArr.find(day => day === holiday)
+      const match = attendArr.find((day) => day === holiday)
       const index = attendArr.indexOf(match)
       const copyArr = [...attendArr]
       const removeItem = copyArr.splice(index, 1)
@@ -53,26 +54,37 @@ function HolidayCard({ holiday, isSelected, setAvoidArr, avoidArr, attendArr, se
       <section className="data-container">
         <section className="names-container">
           <p className="holiday-name">{holiday.name}</p>
-          <p className="holiday-local-name" data-testid='local-name'>Locally: {holiday.localName}</p>
+          <p className="holiday-local-name" data-testid="local-name">
+            Locally:
+            {holiday.localName}
+          </p>
         </section>
         <section className="date-type-container">
           <p className="holiday-date">{holiday.date}</p>
-          <p className="holiday-type">{holiday.type} Holiday</p>
+          <p className="holiday-type">
+            {holiday.type}
+            {' '}
+            Holiday
+          </p>
         </section>
       </section>
       <section className="thumb-container">
-        {!attendItem && <img 
+        {!attendItem && (
+        <img
           alt="thumb down icon"
-          src={ thumbDown }
+          src={thumbDown}
           className="thumb-down"
-          onClick={saveHoliday}  
-        />}
-        {!avoidItem && <img 
+          onClick={saveHoliday}
+        />
+        )}
+        {!avoidItem && (
+        <img
           alt="thumb up icon"
-          src={ thumbUp }
-          className="thumb-up" 
-          onClick={saveHoliday} 
-        />}
+          src={thumbUp}
+          className="thumb-up"
+          onClick={saveHoliday}
+        />
+        )}
       </section>
     </section>
   )
@@ -82,9 +94,9 @@ export default HolidayCard
 
 HolidayCard.propTypes = {
   holiday: PropTypes.object,
-  isSelected: PropTypes.object, 
-  setAttendArr: PropTypes.func, 
-  setAvoidArr: PropTypes.func, 
-  avoidArr: PropTypes.array, 
-  attendArr: PropTypes.array 
+  isSelected: PropTypes.object,
+  setAttendArr: PropTypes.func,
+  setAvoidArr: PropTypes.func,
+  avoidArr: PropTypes.array,
+  attendArr: PropTypes.array
 }
