@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, waitFor, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import Form from './Form.js'
-// import { fetchName } from './apiCalls'
-// jest.mock('./apiCalls.js')
 const submitCountry = jest.fn()
 
 describe('Form', () => {

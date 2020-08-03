@@ -4,8 +4,6 @@ import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import HolidayCard from './HolidayCard.js'
-// import { fetchName } from './apiCalls'
-// jest.mock('./apiCalls.js')
 
 describe('HolidayCard', () => {
   const holidayObj = {

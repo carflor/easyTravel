@@ -36,7 +36,6 @@ function Holidays({
       <HolidayCard
         key={id++}
         id={id++}
-        // data-testid="holidayCard-testId"
         holiday={holiday}
         isSelected={isSelected}
         setAvoidArr={setAvoidArr}

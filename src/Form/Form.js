@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 
 function Form({ countries, submitCountry }) {
   const [selectedValue, setSelectedValue] = useState('')
-  // console.log(selectedValue, 'thing being passed into undefined')
   let countryOptions
   if (countries.length >= 1) {
     countryOptions = countries.map((country) => (
