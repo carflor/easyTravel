@@ -9,11 +9,11 @@ This project was tested with React Testing Library + Jest.
 
 ## Images
 
-(Main Page Mobile)[./Assets/easyTravel1.png]
+![Main Page Mobile](./Assets/easyTravel1.png)
 
-(Select Holiday Page Mobile)[./Assets/easyTravel2.png]
+![Select Holiday Page Mobile](./Assets/easyTravel2.png)
 
-(Saved Holidays Page Mobile)[./Assets/easyTravel3.png]
+![Saved Holidays Page Mobile](./Assets/easyTravel3.png)
 
 
 
