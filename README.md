@@ -1,21 +1,34 @@
+# EasyTravel 
+
+### Abstract
+Final solo project Module 3. I was tasked with building an application in 6 days that would display dynamic use of React, React Hooks, React Router, React Testing Library + Jest. Easy Travel is an application that allows a user to search through international Holidays to ease travel planning. A user can select if the holiday is one they would like to Attend or one to Avoid depending if the user is trying to avoid crowds or would like to experience cultural immersion. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This project was tested with React Testing Library + Jest. 
 
+## Images
+
+()[]
+
+
+### Installation instructions:
 In the project directory, you can run:
-
-### `yarn start`
+### `clone repository in your terminal`
+### `npm install`
+### `npm run start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
+
+
+
+
 
 ### `yarn build`
 

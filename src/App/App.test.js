@@ -184,7 +184,7 @@ describe('App', () => {
     const savedAttendTitle = getByText('Attend')
     const firstSavedAttendHoliday = getByText('Day of the Dog')
     // const secondSavedAttendHoliday = getByText(`New Year's Day`)
-    const firstSavedAvoidHoliday = getByText('Day of the Blue Buttrflies')
+    const firstSavedAvoidHoliday = getByText('Day of the Blue Butterflies')
     const deleteIcons = getAllByRole('button', {name: 'X'})
     expect(savedAvoidTitle).toBeInTheDocument()
     expect(savedAttendTitle).toBeInTheDocument()
