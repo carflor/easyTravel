@@ -33,7 +33,7 @@ function App() {
 
   useEffect(() => {
     getCountries()
-  }, [getCountries])
+  }, [])
 
   const main = (
     <main className="app">
@@ -54,6 +54,7 @@ function App() {
             submitCountry={submitCountry}
           />
         </section>
+        {error && <p>Error getting data, please refresh!</p>}
       </section>
     </main>
   )
@@ -64,7 +65,6 @@ function App() {
         path="/countries/:countryCode/holidays"
         render={() => (
           <Holidays
-            // countryCode={isSelected.key}
             isSelected={isSelected}
             avoidArr={avoidArr}
             setAvoidArr={setAvoidArr}

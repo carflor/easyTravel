@@ -20,7 +20,8 @@ describe('App', () => {
       if (/Warning.*not wrapped in act/.test(args[0])) {
         return
       }
-      originalError.call(console, ...args)
+      // this is causing an error in console
+      // originalError.call(console, ...args)
     }
   })
   afterAll(() => {
@@ -336,18 +337,14 @@ describe('App', () => {
     expect(testHistoryObject.location.pathname).toEqual('/countries/Benin/holidays')
   })
 
-  it.skip('should render error message if fetch is not successful', async () => {
+  it('should render error message if fetch is not successful', async () => {
     fetchCountries.mockRejectedValueOnce(new Error('Issue consolidating data! Please refresh.'))
     const { getByText } = render(
       <MemoryRouter><App /></MemoryRouter>
     )
-    const option1 = await waitFor(() => getByText('Belize'))
-    const option2 = await waitFor(() => getByText('Brazil'))
-    const option3 = await waitFor(() => getByText('Barbados'))
-    expect(option1).not.toBeInTheDocument()
-    expect(option2).not.toBeInTheDocument()
-    expect(option3).not.toBeInTheDocument()
-    const errorMessage = getByText('Issue consolidating data! Please refresh.')
+    const pageTitle = getByText("EasyTravel")
+    const errorMessage = await waitFor(() => getByText('Error getting data, please refresh!'))
+    expect(pageTitle).toBeInTheDocument()
     expect(errorMessage).toBeInTheDocument()
   })
 })
