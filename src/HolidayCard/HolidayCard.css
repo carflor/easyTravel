@@ -28,6 +28,18 @@
   font-size: 2.5vh;
 }
 
+.thumb-up:hover,
+.thumb-up:active,
+.thumb-up:focus,
+.thumb-down:hover,
+.thumb-down:focus,
+.thumb-down:active {
+  cursor: pointer;
+  box-shadow: 0 0 3px 3px #FC9F5B;
+  transform: scale(1.03);
+  transition: transform .3s;
+}
+
 @media screen and (max-width: 760px) {
   .holiday-card {
     height: 25vh;
