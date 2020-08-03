@@ -11,7 +11,7 @@ This project was tested with React Testing Library + Jest.
 
 ![Main Page Mobile](https://github.com/carflor/easyTravel/blob/master/src/Assets/easyTravel1.png)
 
-![Select Holiday Page Mobile](./Assets/easyTravel2.png)
+![Select Holiday Page Mobile](./src/Assets/easyTravel1.png)
 
 ![Saved Holidays Page Mobile](./Assets/easyTravel3.png)
 
