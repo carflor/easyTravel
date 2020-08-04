@@ -8,21 +8,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project was tested with React Testing Library + Jest. 
 
 ## Images
-
-Main Welcome Page - Mobile
 <img src="./src/Assets/easyTravel1.png" width="300">
 
-Holiday Selection Page - Mobile 
 <img src="./src/Assets/easyTravel2.png" width="300">
 
-Saved Holiday Page - Mobile
 <img src="./src/Assets/easyTravel3.png" width="300">
 
-
-
 ### Installation instructions:
-In the project directory, you can run:
+
 ### `clone repository in your terminal`
+
+then in your terminal, run:
+
 ### `npm install`
 ### `npm run start`
 
