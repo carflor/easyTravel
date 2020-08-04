@@ -9,12 +9,14 @@ This project was tested with React Testing Library + Jest.
 
 ## Images
 
-![Main Page Mobile](./src/Assets/easyTravel1.png)
-<img src="./src/Assets/easyTravel1.png" width="100">
+Main Welcome Page - Mobile
+<img src="./src/Assets/easyTravel1.png" width="300">
 
-![Select Holiday Page Mobile](./src/Assets/easyTravel2.png)
+Holiday Selection Page - Mobile 
+<img src="./src/Assets/easyTravel2.png" width="300">
 
-![Saved Holidays Page Mobile](./src/Assets/easyTravel3.png)
+Saved Holiday Page - Mobile
+<img src="./src/Assets/easyTravel3.png" width="300">
 
 
 
