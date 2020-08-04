@@ -1,7 +1,9 @@
 # EasyTravel 
 
 ### Abstract
-Final solo project Module 3. I was tasked with building an application in 6 days that would display dynamic use of React, React Hooks, React Router, React Testing Library + Jest. Easy Travel is an application that allows a user to search through international Holidays to ease travel planning. A user can select if the holiday is one they would like to Attend or one to Avoid depending if the user is trying to avoid crowds or would like to experience cultural immersion. 
+Final solo project Module 3. I was tasked with building an application from scratch in 6 days that would display dynamic use of React, React Hooks, React Router, React Testing Library + Jest. 
+
+Easy Travel is an application that allows a user to search through international Holidays to ease travel planning. A user can select if the holiday is one they would like to Attend or one to Avoid depending if the user is trying to avoid crowds or would like to experience cultural immersion. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
