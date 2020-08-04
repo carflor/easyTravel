@@ -10,6 +10,7 @@ This project was tested with React Testing Library + Jest.
 ## Images
 
 ![Main Page Mobile](./src/Assets/easyTravel1.png)
+<img src="./src/Assets/easyTravel1.png" width="100">
 
 ![Select Holiday Page Mobile](./src/Assets/easyTravel2.png)
 
