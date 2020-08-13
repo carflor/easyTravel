@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- node
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: FKCSmntBjw99KsmNNCDFwi+AX4DDTXjX8RrI+iTE2e2WHaHvwGC6HqegvDwbwl1bdtYJx3w72v+tezaNBI7b8Kd915Ka6EMB6ZKeRQpO3+Jysg2P1LVca2WoWig/PDpWL/ztdANIL1ftTtAi3myK6/E8pqM5u/EIRp3pFvU4NLPSWkzc5/AudWzoDhveiS3ysgaP2FWosiU9PtOeNoprCCvoMy/QTlcooSXUDUNmlNLskQzetKW6DoynLWazlhOS95u7RRpu9ijQUE53x0r1c/+TRn2UYHlU20dHnHu9LQChHr1spAqGBPU/Dcx4jOd+HfxH6jiGuUycENy791VnfGQk0rZrRrNed0FNBTBS2BR5lo6iq+dWefMiwv1d6MDRM0bgdgBGWvq2Kej2bO/8w22MraI2zZs3mAt+Kz1Vt7LX1KmND3RoXwpjwzTZQJauMz/JmCRLFj53Wzyj9unBhwj3i8E4Im8GQYcY2799n6XL10xQD2GpaHLfJF9f6S8ZA4W0JnzFzpcgy1qhuaNm7wl0ZvkC2C2AV/O+bxoVN/eXfZr7jjcbOwcg51uZVVKxxE2xytY3NRAqUzI7p6KcePpTpFR4w7VXnKx4wBIX58Z0KhO/mAokjAIREUHmYJgg/tWycpNf/AWopXPVH48iqQ/iXr7uHSBYWdvmI0suii4=
+  app: easy-travel
+  skip_cleanup: true
