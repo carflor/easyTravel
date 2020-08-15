@@ -1,5 +1,7 @@
 # EasyTravel 
 
+[![Build Status](https://travis-ci.org/carflor/easyTravel.svg?branch=main)](https://travis-ci.org/carflor/easyTravel)
+
 ### Abstract
 Final solo project Module 3. I was tasked with building an application from scratch in 6 days that would display dynamic use of:
 - React
